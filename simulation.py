@@ -137,6 +137,8 @@ def show_stats(data,sim_time):
         print(f'{ti} occured {tis_report[ti]["occurence"]} times')
         for ms in tis_report[ti]["ms"]:
             print(f'{ti} solved {tis_report[ti]["ms"][ms]} times with {ms}')
+        for phase in tis_report[ti]["phases"]:
+            print(f'{ti} reported {tis_report[ti]["phases"][phase]} times int {phase} phase')
     print(f"failures : {failures}, for simulation = {sim_time}")
     print("Aircraft impact ")
     for ac_imp in data["ac_impact"]:

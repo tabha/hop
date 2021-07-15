@@ -1,5 +1,5 @@
 {
-    "sim_time":10000,
+    "sim_time":100000,
     "sample_size":2000,
     "aw_impact_weight":0.75,
     "perf_impact_weight":0.25,
