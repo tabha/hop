@@ -1,6 +1,30 @@
 {
     "sim_time":10000,
     "sample_size":2000,
+    "aw_impact_weight":0.75,
+    "perf_impact_weight":0.25,
+    "ms_rules":{
+        "ms":["MS1","MS2","MS3"],
+        "HIGH":[0.7,0.2,0.1],
+        "MEDIUM":[0.5,0.3,0.2],
+        "LOW":[0.25,0.5,0.25]
+    },
+    "aw_scores":{
+        "NOGO":3,
+        "GOIF":2,
+        "GO":1
+    },
+    "impact_scores":["HIGH","MEDIUM","LOW"],
+    "perf_scores":{
+        "HIGH":3,
+        "MEDIUM":2,
+        "LOW":1
+    },
+    "reporting_phase":[
+        "BPTO",
+        "Flying",
+        "Planned Stop"
+    ],
     "tis":[
         {
             "name":"mechanical",
@@ -13,6 +37,20 @@
                     "std":2
                 }
             },
+            "reporting_phase":[
+                {
+                    "name":"BPTO",
+                    "weight":0.25
+                },
+                {
+                    "name":"Flying",
+                    "weight":0.5
+                },
+                {
+                    "name":"Planned Stop",
+                    "weight":0.25
+                }
+            ],
             "ms":[
                 {
                     "name":"MS1",
@@ -29,6 +67,36 @@
                     "weight":20,
                     "distribution":{}
                 }
+            ],
+            "airworthines_impact":[
+                {
+                    "name":"NOGO",
+                    "weight":0.3
+                },
+                {
+                    "name":"GOIF",
+                    "weight":0.5
+                },
+                {
+                    "name":"GO",
+                    "weight":0.2
+                }
+
+            ],
+            "performance_impact":[
+                {
+                    "name":"HIGH",
+                    "weight": 0.1
+                },
+                {
+                    "name":"MEDIUM",
+                    "weight": 0.4
+                },
+                {
+                    "name":"LOW",
+                    "weight": 0.5
+                }
+
             ]
         },
         {
@@ -42,6 +110,50 @@
                     "std":3
                 }
             },
+            "reporting_phase":[
+                {
+                    "name":"BPTO",
+                    "weight":0.4
+                },
+                {
+                    "name":"Flying",
+                    "weight":0.2
+                },
+                {
+                    "name":"Planned Stop",
+                    "weight":0.4
+                }
+            ],
+            "airworthines_impact":[
+                {
+                    "name":"NOGO",
+                    "weight":0.3
+                },
+                {
+                    "name":"GOIF",
+                    "weight":0.5
+                },
+                {
+                    "name":"GO",
+                    "weight":0.2
+                }
+
+            ],
+            "performance_impact":[
+                {
+                    "name":"HIGH",
+                    "weight": 0.15
+                },
+                {
+                    "name":"MEDIUM",
+                    "weight": 0.25
+                },
+                {
+                    "name":"LOW",
+                    "weight": 0.6
+                }
+
+            ],
             "ms":[
                 {
                     "name":"MS1",
@@ -71,6 +183,50 @@
                     "std":10
                 }
             },
+            "reporting_phase":[
+                {
+                    "name":"BPTO",
+                    "weight":0.3
+                },
+                {
+                    "name":"Flying",
+                    "weight":0.3
+                },
+                {
+                    "name":"Planned Stop",
+                    "weight":0.4
+                }
+            ],
+            "airworthines_impact":[
+                {
+                    "name":"NOGO",
+                    "weight":0.2
+                },
+                {
+                    "name":"GOIF",
+                    "weight":0.4
+                },
+                {
+                    "name":"GO",
+                    "weight":0.4
+                }
+
+            ],
+            "performance_impact":[
+                {
+                    "name":"HIGH",
+                    "weight": 0.25
+                },
+                {
+                    "name":"MEDIUM",
+                    "weight": 0.25
+                },
+                {
+                    "name":"LOW",
+                    "weight": 0.5
+                }
+
+            ],
             "ms":[
                 {
                     "name":"MS1",
@@ -100,6 +256,50 @@
                     "std":5
                 }
             },
+            "reporting_phase":[
+                {
+                    "name":"BPTO",
+                    "weight":0.4
+                },
+                {
+                    "name":"Flying",
+                    "weight":0.2
+                },
+                {
+                    "name":"Planned Stop",
+                    "weight":0.4
+                }
+            ],
+            "airworthines_impact":[
+                {
+                    "name":"NOGO",
+                    "weight":0.1
+                },
+                {
+                    "name":"GOIF",
+                    "weight":0.2
+                },
+                {
+                    "name":"GO",
+                    "weight":0.7
+                }
+
+            ],
+            "performance_impact":[
+                {
+                    "name":"HIGH",
+                    "weight": 0.15
+                },
+                {
+                    "name":"MEDIUM",
+                    "weight": 0.25
+                },
+                {
+                    "name":"LOW",
+                    "weight": 0.6
+                }
+
+            ],
             "ms":[
                 {
                     "name":"MS1",
@@ -129,6 +329,50 @@
                     "std":1
                 }
             },
+            "reporting_phase":[
+                {
+                    "name":"BPTO",
+                    "weight":0.5
+                },
+                {
+                    "name":"Flying",
+                    "weight":0.2
+                },
+                {
+                    "name":"Planned Stop",
+                    "weight":0.3
+                }
+            ],
+            "airworthines_impact":[
+                {
+                    "name":"NOGO",
+                    "weight":0.2
+                },
+                {
+                    "name":"GOIF",
+                    "weight":0.5
+                },
+                {
+                    "name":"GO",
+                    "weight":0.3
+                }
+
+            ],
+            "performance_impact":[
+                {
+                    "name":"HIGH",
+                    "weight": 0.25
+                },
+                {
+                    "name":"MEDIUM",
+                    "weight": 0.35
+                },
+                {
+                    "name":"LOW",
+                    "weight": 0.4
+                }
+
+            ],
             "ms":[
                 {
                     "name":"MS1",
@@ -158,6 +402,50 @@
                     "std":2
                 }
             },
+            "reporting_phase":[
+                {
+                    "name":"BPTO",
+                    "weight":0.2
+                },
+                {
+                    "name":"Flying",
+                    "weight":0.3
+                },
+                {
+                    "name":"Planned Stop",
+                    "weight":0.5
+                }
+            ],
+            "airworthines_impact":[
+                {
+                    "name":"NOGO",
+                    "weight":0.3
+                },
+                {
+                    "name":"GOIF",
+                    "weight":0.2
+                },
+                {
+                    "name":"GO",
+                    "weight":0.5
+                }
+
+            ],
+            "performance_impact":[
+                {
+                    "name":"HIGH",
+                    "weight": 0.25
+                },
+                {
+                    "name":"MEDIUM",
+                    "weight": 0.40
+                },
+                {
+                    "name":"LOW",
+                    "weight": 0.35
+                }
+
+            ],
             "ms":[
                 {
                     "name":"MS1",
