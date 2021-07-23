@@ -1,4 +1,5 @@
 {
+    "sim_time":10000,
     "classes":{
         "LMH":["LOW","MEDIUM","HIGH"],
         "YN":["YES","NO"],

@@ -42,8 +42,9 @@ class ATA2D(Object):
         """
         return {}
     def run(self,env,data):
-        tis = []
-        ms = []
+        tis = data["tis"]
+        ms = data["ms"]
+        mds =data["mds"]
         while True:
             ti=[]
             for p in self.parameters:
@@ -54,12 +55,16 @@ class ATA2D(Object):
                 if p.name=="Periodicity":
                     break
                 index +=1
-            yield ti[index].value
+            yield env.timeout(ti[index].value)
             # add the ti in the list of tis
             tis.append(ti)
             # generated the maintenance demand based on the ti
             md = MaintenanceDemand(ti).getDemand()
             # choose the maintenance scenario
+            ms.append(self.choose_ms(md))
+            mds.append(md)
+
+
 
         
 
@@ -76,6 +81,7 @@ class MaintenanceDemand(Object):
 
 
 class Parameter:
+
     """
     Supported typeDistribution are
     LMH for Low medium high
@@ -130,3 +136,25 @@ class Parameter:
             "name":self.name,
             "value":result
         }
+
+
+def setup(env,data,sim_params):
+    parameters = sim_params["ATA2D"]["ti_parameters"]
+    ata2D_aircondition = ATA2D(parameters)
+    data["tis"] =[] # collect all tis
+    data["mds"] =[] # collect all mainteance demand
+    data["ms"]  =[] # collect all maintenance scenarios
+    env.process(ata2D_aircondition.run(env,data))
+    yield env.timeout(1)
+
+
+def show_stats(data,SIM_TIME):
+
+
+def main():
+    f = open("parameters.json")
+    sim_params = json_load(f)
+    env = simpy.Environment()
+    env.process(setup(env,data,sim_params))
+    env.run(until=sim_params["sim_time"])
+    show_stats(data,sim_params["sim_time"])
