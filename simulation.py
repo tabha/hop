@@ -29,12 +29,12 @@ class TI(object):
         """
         define the rule how to pick a ms
         """
-        score = (config["aw_impact_weight"]*config["aw_scores"][aw_impact])+ (config["perf_impact_weight"]*config["perf_scores"][perf_impact])
-        index = 2 # by default it is low
+        score = (config["aw_impact_weight"]*config["aw_scores"][aw_impact]) + (config["perf_impact_weight"]*config["perf_scores"][perf_impact])
+        index = 2 # by default it is LOW
         if score > 2 :
             index = 0 # HIGH
         elif score < 2 and score > 1:
-            index = 1
+            index = 1 # MEDIUM
         impact = config["impact_scores"][index] # HIGH, MEDIUM OR LOW
         ms = random.choices(
             config["ms_rules"]["ms"], # MS1 , MS2 or MS3
