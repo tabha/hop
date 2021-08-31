@@ -1,5 +1,5 @@
 {
-    "sim_time":8760,
+    "sim_time":876000,
     "aw_impact_weight":0.50,
     "perf_impact_weight":0.25,
     "report_impact_weight":0.25,
