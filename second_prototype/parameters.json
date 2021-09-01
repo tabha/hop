@@ -62,14 +62,14 @@
         "MD1":{
 
             "description":"immediate repair",
-            "parameters":[
+            "parameters":[ 
                 {
                     "name":"m-flexibility",
                     "type":"LMH",
                     "weights":[0.4,0.4,0.2]
                     
                 },{
-                    "name":"m-duration",
+                    "name":"mDuration",
                     "type":"NORMAL",
                     "mean":120,
                     "std":20
@@ -141,7 +141,7 @@
                     "weights":[0.4,0.4,0.2]
                     
                 },{
-                    "name":"m-duration",
+                    "name":"mDuration",
                     "type":"NORMAL",
                     "mean":30,
                     "std":5
@@ -213,7 +213,7 @@
                     "weights":[0.4,0.4,0.2]
                     
                 },{
-                    "name":"m-duration",
+                    "name":"mDuration",
                     "type":"NORMAL",
                     "mean":90,
                     "std":15
@@ -285,7 +285,7 @@
                     "weights":[0.4,0.4,0.2]
                     
                 },{
-                    "name":"m-duration",
+                    "name":"mDuration",
                     "type":"NORMAL",
                     "mean":50,
                     "std":10
