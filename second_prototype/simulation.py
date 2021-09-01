@@ -274,7 +274,7 @@ def showGraph1(iterations,sim_params):
         i=0
         print(f'Maintenance scenario, For Report phase=({target})')
         for ms in ms_dict:
-            print(f'ti solved with {ms} {result1[i]} % of the times ({ms_dict[ms]} ti)')
+            print(f'ti solved with {ms} {result[i]} % of the times ({ms_dict[ms]} ti)')
             i+=1
     print(f'{len(iterations)} failures')
     bpto_iterations = list(filter(filterByBPTO,iterations))

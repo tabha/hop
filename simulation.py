@@ -105,9 +105,6 @@ class TI(object):
             except:
                 ac_report[ac_impact] = 1 #stats
 
-                        
-
-
 #this set up the tis 
 def setup(env,data,config):
     print("creating technical issues")
