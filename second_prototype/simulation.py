@@ -2,9 +2,11 @@ import simpy
 import random
 import json
 from ATA2D import ATA2D
+from Parser import ParameterParser
 from Stats import show_stats
 class Simulation:
     def __init__(self,inputJson_path="parameters.json"):
+
         f = open("parameters.json") # to be replaced by a class that handle parsing input json files
         self.sim_params = json.load(f)  # same
         self.env = simpy.Environment()  # initializing the simpy environement
@@ -16,6 +18,8 @@ class Simulation:
     the data collecter is initalized so that later we can do data analysis.
     """
     def setup(self):
+        #parser = ParameterParser("ata2d_spec")
+        #parser.parse()
         parameters = self.sim_params["ATA2D"]["ti_parameters"]
         ata2D_aircondition = ATA2D(parameters,self.sim_params["classes"]) # create an instance of an ATA2D
         

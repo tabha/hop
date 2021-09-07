@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import matplotlib.pyplot as plt
+import numpy as np
 import seaborn as sns
 
 
@@ -20,6 +21,10 @@ def ecdf(data):
 
     return x, y
 
+"""
+this function helped to validate the behavior of the occurence periodicity,
+in the input parameters, we defined it as a normal distribution
+"""
 def showOccurenceGraph(dataSet):
     x, y = ecdf(dataSet)
     plt.figure(figsize=(8,7))
@@ -32,19 +37,23 @@ def showOccurenceGraph(dataSet):
     plt.plot(x_theor, y_theor)
     plt.legend(('Normal Distribution', 'Empirical Data'), loc='lower right')
     plt.show()
-def filterByReportPhase(iteration,phase):
-    ti= iteration["ti_parameters"]
-    for p in ti:
-        if p["name"]=="Report-phase":
-            return p["value"]==phase
-    return False
-    
+
+
 def filterByBPTO(iteration):
-    return filterByReportPhase(iteration,"BPTO")
+    return filterByParameter(iteration,"Report-phase","BPTO")
 def filterByFLYING(iteration):
-    return filterByReportPhase(iteration,"FLYING")
+    return filterByParameter(iteration,"Report-phase","FLYING")
 def filterByPLANNEDSTOP(iteration):
-    return filterByReportPhase(iteration,"PLANNED STOP")
+    return filterByParameter(iteration,"Report-phase","PLANNED STOP")
+
+def filterByParameter(iteration,nameParameter,targetValue):
+    ti = iteration["ti_parameters"]
+    for p in ti:
+        if p["name"]==nameParameter:
+            return p["value"]==targetValue
+    return False
+def filterByImpactScore(iteration,state):
+    return iteration["scenario"]["impact"] == state
 
 def computeDurationMd(iterations,target):
     duration=0
@@ -59,8 +68,15 @@ def computeMSFrequences(iterations,ms_dict):
     size=len(iterations)
     print(f'{size}, {ms_dict}')
     return [round((count/size)*100,2) for count in [ms_dict[key] for key in ms_dict]]
-# Graph 1 show how the report phase impact on the accessibility
-def showGraph1(iterations,sim_params):
+
+"""
+show histogram graphs for all types of report phase
+BPTO
+FLYING
+PLANNED_STOP
+ALL of them
+"""
+def showMdDurationGraphs(iterations,sim_params):
 
     def report(target,ms_dict,result):
         i=0
@@ -101,13 +117,20 @@ def showGraph1(iterations,sim_params):
     flyingAxis=axs[0,1]
     planedAxis=axs[1,0]
     allAxis=axs[1,1]
-    showHisto(bpto_iterations,"BPTO",bptoAxis)
-    showHisto(flying_iterations,"FLYING",flyingAxis)
-    showHisto(plannedStop_iterations,"PLANNED STOP",planedAxis)
-    showHisto(iterations,"ALL",allAxis)
+    showHistoMdDuration(bpto_iterations,"BPTO",bptoAxis)
+    showHistoMdDuration(flying_iterations,"FLYING",flyingAxis)
+    showHistoMdDuration(plannedStop_iterations,"PLANNED STOP",planedAxis)
+    showHistoMdDuration(iterations,"ALL",allAxis)
     plt.show()
+"""
+draw a histogram in the axis,
+intervalNumber helps to regroup values
+let say we have a list of maintenance duration, we want to draw a histogram
+first we will sort the list an regroup value in intervals
+so that we can count the frequency of values within an interval
 
-def showHisto(
+"""
+def showHistoMdDuration(
         iterations,
         name,
         axis,
@@ -121,7 +144,7 @@ def showHisto(
     def countValue(sortedList,start,end):
         count = 0
         for value in sortedList:
-            if value >= start and value <= end:
+            if value >= start and value < end:
                 count+=1
             elif value >= end:
                 break;
@@ -152,6 +175,37 @@ def showHisto(
         y.append(countValue(durationSorted,indexes[i],indexes[i+1]))
     histo(durationSorted,indexes,axis)
 
+
+def showDistributionMS(iterations,state,ms_list):
+    print(ms_list)
+    print(f'{len(iterations)} tis with {state} impact')
+    for ms in ms_list:
+        print(f'------ti solved with {ms} {(round(countValuesForMS(iterations,ms)/len(iterations)*100,2))} %')
+
+def countValuesForMS(iterations,ms):
+    #first filter by ms
+    def filterbyMs(iteration):
+        return iteration["scenario"]["scenario"] == ms
+    ms_tis = list(filter(filterbyMs,iterations))
+    return len(ms_tis)
+def showMSFrequenciesBasedOnReportPhase(iterations,ms_list):
+    
+    def filterByHighState(iteration):
+        return filterByImpactScore(iteration,"HIGH")
+    def filterByMediumState(iteration):
+        return filterByImpactScore(iteration,"MEDIUM")
+    def filterByLowState(iteration):
+        return filterByImpactScore(iteration,"LOW")
+    
+    tisWithHighImpact = list(filter(filterByHighState,iterations))
+    tisWithMediumImpact = list(filter(filterByMediumState,iterations))
+    tisWithLowImpact = list(filter(filterByLowState,iterations))
+    print(f'tis with impact score ="HIGH", {len(tisWithHighImpact)} tis')    
+    print(f'tis with impact score ="MEDIUM", {len(tisWithMediumImpact)} tis')    
+    print(f'tis with impact score ="LOW", {len(tisWithLowImpact)} tis') 
+    showDistributionMS(tisWithHighImpact,"HIGH",ms_list)  
+    showDistributionMS(tisWithMediumImpact,"MEDIUM",ms_list)  
+    showDistributionMS(tisWithLowImpact,"LOW",ms_list)  
 def show_stats(data,sim_params):
 
     indexTis = [i for i in range(1,len(data["tis"])+1)]
@@ -162,8 +216,9 @@ def show_stats(data,sim_params):
                 periodicityList.append(p["value"])
                 break
     #showOccurenceGraph(periodicityList)
-    
-    showGraph1(data["iterations"],sim_params)
+    ms_list=[ms for ms in sim_params["MS"]]
+    showMdDurationGraphs(data["iterations"],sim_params)
+    showMSFrequenciesBasedOnReportPhase(data["iterations"],ms_list)
     #print(indexTis)
     #print(data["tis"][0])
     #print(periodicityList)

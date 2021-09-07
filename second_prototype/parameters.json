@@ -4,10 +4,11 @@
     "perf_impact_weight":0.25,
     "report_impact_weight":0.25,
     "ms_rules":{
-        "ms":["MS1","MS2","MS3","MS4"],
-        "HIGH":[0.4,0.2,0.1,0.3],
-        "MEDIUM":[0.2,0.4,0.2,0.2],
-        "LOW":[0.2,0.3,0.3,0.2]
+        "ms":        [ "MS1"  , "MS2" ,"MS3"  ,"MS4" , "MS5" ,"MS6","MS7","MS8","MS9"],
+        "HIGH":      [  0.25  ,  0.05 , 0.05  , 0.15 ,  0.15 , 0.1 , 0.1 , 0.1 , 0.05],
+        "MEDIUM":    [  0.15  ,  0.2  , 0.05  , 0.1 ,  0.05 , 0.05 , 0.2 , 0.1 , 0.1 ],
+        "LOW":       [  0.05  ,  0.35  , 0.15  , 0.1 ,  0.05 , 0.1 , 0.1 , 0.05 , 0.05]
+        
     },
     "impact_scores":["HIGH","MEDIUM","LOW"],
     "aw_scores":{
@@ -205,7 +206,7 @@
             ]
         },
         "MD3":{
-            "description":"Deferred repair",
+            "description":"Repititive action",
             "parameters":[  
                 {
                     "name":"m-flexibility",
@@ -277,7 +278,7 @@
             ]
         },
         "MD4":{
-            "description":"Reset",
+            "description":"Deferred Rectification",
             "parameters":[
                 {
                     "name":"m-flexibility",
@@ -347,12 +348,307 @@
                     "weights":[0.2,0.8]
                 }
             ]
+        },
+        "MD5":{
+            "description":"Prescribed action",
+            "parameters":[
+                {
+                    "name":"m-flexibility",
+                    "type":"LMH",
+                    "weights":[0.4,0.4,0.2]
+                    
+                },{
+                    "name":"mDuration",
+                    "type":"NORMAL",
+                    "mean":100,
+                    "std":10
+                },{
+                    "name":"h-ressources",
+                    "type":"SN",
+                    "weights":[0.4,0.6]
+                },{
+                    "name":"gse-needed",
+                    "type":"YN",
+                    "weights":[0.3,0.7]
+                },{
+                    "name":"m-automation",
+                    "type":"LMH",
+                    "weights":[0.3,0.3,0.4]
+                },{
+                    "name":"diagnosticability",
+                    "type":"LMH",
+                    "weights":[0.4,0.4,0.2]
+                },{
+                    "name":"accessibility",
+                    "type":"LMH",
+                    "weights":[0.4,0.3,0.3]
+                },{
+                    "name":"replacability",
+                    "type":"LMH",
+                    "weights":[0.3,0.3,0.4]
+                },{
+                    "name":"testability",
+                    "type":"LMH",
+                    "weights":[0.2,0.3,0.5]
+                },{
+                    "name":"reconfigurability",
+                    "type":"LMH",
+                    "weights":[0.4,0.4,0.2]
+                },{
+                    "name":"repairability",
+                    "type":"LMH",
+                    "weights":[0.5,0.5,0.1]
+                },{
+                    "name":"impectability",
+                    "type":"LMH",
+                    "weights":[0.4,0.2,0.4]
+                },{
+                    "name":"serviceability",
+                    "type":"LMH",
+                    "weights":[0.5,0.4,0.1]
+                },{
+                    "name":"cleanbility",
+                    "type":"LMH",
+                    "weights":[0.3,0.4,0.2]
+                },{
+                    "name":"data-transferability",
+                    "type":"LMH",
+                    "weights":[0.6,0.2,0.2]
+                },{
+                    "name":"specific-conf",
+                    "type":"YN",
+                    "weights":[0.2,0.8]
+                }
+            ]
+        },
+
+        "MD6":{
+            "description":"Finding rectification",
+            "parameters":[
+                {
+                    "name":"m-flexibility",
+                    "type":"LMH",
+                    "weights":[0.4,0.4,0.2]
+                    
+                },{
+                    "name":"mDuration",
+                    "type":"NORMAL",
+                    "mean":80,
+                    "std":20
+                },{
+                    "name":"h-ressources",
+                    "type":"SN",
+                    "weights":[0.4,0.6]
+                },{
+                    "name":"gse-needed",
+                    "type":"YN",
+                    "weights":[0.3,0.7]
+                },{
+                    "name":"m-automation",
+                    "type":"LMH",
+                    "weights":[0.3,0.3,0.4]
+                },{
+                    "name":"diagnosticability",
+                    "type":"LMH",
+                    "weights":[0.4,0.4,0.2]
+                },{
+                    "name":"accessibility",
+                    "type":"LMH",
+                    "weights":[0.4,0.3,0.3]
+                },{
+                    "name":"replacability",
+                    "type":"LMH",
+                    "weights":[0.3,0.3,0.4]
+                },{
+                    "name":"testability",
+                    "type":"LMH",
+                    "weights":[0.2,0.3,0.5]
+                },{
+                    "name":"reconfigurability",
+                    "type":"LMH",
+                    "weights":[0.4,0.4,0.2]
+                },{
+                    "name":"repairability",
+                    "type":"LMH",
+                    "weights":[0.5,0.5,0.1]
+                },{
+                    "name":"impectability",
+                    "type":"LMH",
+                    "weights":[0.4,0.2,0.4]
+                },{
+                    "name":"serviceability",
+                    "type":"LMH",
+                    "weights":[0.5,0.4,0.1]
+                },{
+                    "name":"cleanbility",
+                    "type":"LMH",
+                    "weights":[0.3,0.4,0.2]
+                },{
+                    "name":"data-transferability",
+                    "type":"LMH",
+                    "weights":[0.6,0.2,0.2]
+                },{
+                    "name":"specific-conf",
+                    "type":"YN",
+                    "weights":[0.2,0.8]
+                }
+            ]
+        },
+        "MD7":{
+            "description":"Predicted action",
+            "parameters":[
+                {
+                    "name":"m-flexibility",
+                    "type":"LMH",
+                    "weights":[0.4,0.4,0.2]
+                    
+                },{
+                    "name":"mDuration",
+                    "type":"NORMAL",
+                    "mean":120,
+                    "std":30
+                },{
+                    "name":"h-ressources",
+                    "type":"SN",
+                    "weights":[0.4,0.6]
+                },{
+                    "name":"gse-needed",
+                    "type":"YN",
+                    "weights":[0.3,0.7]
+                },{
+                    "name":"m-automation",
+                    "type":"LMH",
+                    "weights":[0.3,0.3,0.4]
+                },{
+                    "name":"diagnosticability",
+                    "type":"LMH",
+                    "weights":[0.4,0.4,0.2]
+                },{
+                    "name":"accessibility",
+                    "type":"LMH",
+                    "weights":[0.4,0.3,0.3]
+                },{
+                    "name":"replacability",
+                    "type":"LMH",
+                    "weights":[0.3,0.3,0.4]
+                },{
+                    "name":"testability",
+                    "type":"LMH",
+                    "weights":[0.2,0.3,0.5]
+                },{
+                    "name":"reconfigurability",
+                    "type":"LMH",
+                    "weights":[0.4,0.4,0.2]
+                },{
+                    "name":"repairability",
+                    "type":"LMH",
+                    "weights":[0.5,0.5,0.1]
+                },{
+                    "name":"impectability",
+                    "type":"LMH",
+                    "weights":[0.4,0.2,0.4]
+                },{
+                    "name":"serviceability",
+                    "type":"LMH",
+                    "weights":[0.5,0.4,0.1]
+                },{
+                    "name":"cleanbility",
+                    "type":"LMH",
+                    "weights":[0.3,0.4,0.2]
+                },{
+                    "name":"data-transferability",
+                    "type":"LMH",
+                    "weights":[0.6,0.2,0.2]
+                },{
+                    "name":"specific-conf",
+                    "type":"YN",
+                    "weights":[0.2,0.8]
+                }
+            ]
+        },
+        "MD8":{
+            "description":"Predicted rectification",
+            "parameters":[
+                {
+                    "name":"m-flexibility",
+                    "type":"LMH",
+                    "weights":[0.4,0.4,0.2]
+                    
+                },{
+                    "name":"mDuration",
+                    "type":"NORMAL",
+                    "mean":140,
+                    "std":40
+                },{
+                    "name":"h-ressources",
+                    "type":"SN",
+                    "weights":[0.4,0.6]
+                },{
+                    "name":"gse-needed",
+                    "type":"YN",
+                    "weights":[0.3,0.7]
+                },{
+                    "name":"m-automation",
+                    "type":"LMH",
+                    "weights":[0.3,0.3,0.4]
+                },{
+                    "name":"diagnosticability",
+                    "type":"LMH",
+                    "weights":[0.4,0.4,0.2]
+                },{
+                    "name":"accessibility",
+                    "type":"LMH",
+                    "weights":[0.4,0.3,0.3]
+                },{
+                    "name":"replacability",
+                    "type":"LMH",
+                    "weights":[0.3,0.3,0.4]
+                },{
+                    "name":"testability",
+                    "type":"LMH",
+                    "weights":[0.2,0.3,0.5]
+                },{
+                    "name":"reconfigurability",
+                    "type":"LMH",
+                    "weights":[0.4,0.4,0.2]
+                },{
+                    "name":"repairability",
+                    "type":"LMH",
+                    "weights":[0.5,0.5,0.1]
+                },{
+                    "name":"impectability",
+                    "type":"LMH",
+                    "weights":[0.4,0.2,0.4]
+                },{
+                    "name":"serviceability",
+                    "type":"LMH",
+                    "weights":[0.5,0.4,0.1]
+                },{
+                    "name":"cleanbility",
+                    "type":"LMH",
+                    "weights":[0.3,0.4,0.2]
+                },{
+                    "name":"data-transferability",
+                    "type":"LMH",
+                    "weights":[0.6,0.2,0.2]
+                },{
+                    "name":"specific-conf",
+                    "type":"YN",
+                    "weights":[0.2,0.8]
+                }
+            ]
         }
     },
     "MS":{
         "MS1":["MD1"],
-        "MS2":["MD2","MD3"],
-        "MS3":["MD2","MD4"],
-        "MS4":["MD4"]
+        "MS2":["MD2","MD4"],
+        "MS3":["MD2","MD3","MD4"],
+        "MS4":["MD3","MD4"],
+        "MS5":["MD4"],
+        "MS6":["MD5"],
+        "MS7":["MD5","MD6"],
+        "MS8":["MD7"],
+        "MS9":["MD7","MD8"]
+    
     }
 }
