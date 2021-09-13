@@ -1,16 +1,17 @@
 {
-    "description":"give the description of the md",
-    "parameters":[  
+    "alias":"MD6",
+    "description":"Finding rectification",
+    "parameters":[
         {
             "name":"m-flexibility",
             "type":"LMH",
-            "weights":[]
+            "weights":[0.4,0.4,0.2]
             
         },{
             "name":"mDuration",
             "type":"NORMAL",
-            "mean":90,
-            "std":15
+            "mean":80,
+            "std":20
         },{
             "name":"h-ressources",
             "type":"SN",
@@ -46,7 +47,7 @@
         },{
             "name":"repairability",
             "type":"LMH",
-            "weights":[0.5,0.4,0.1]
+            "weights":[0.5,0.5,0.1]
         },{
             "name":"impectability",
             "type":"LMH",
