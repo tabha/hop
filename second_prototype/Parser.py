@@ -22,8 +22,7 @@ class ParameterParser(object):
             for s in spec:
                 self.result[s]=spec[s]
 
-
-    def parse(self):
+    def read_input_params(self):
         self.result["MS"]={}
         self.result["MD"]={}
         for subdir, dirs, files in os.walk(self.dirpath):
